@@ -23,6 +23,9 @@
                     @Html.TextAreaFor(m => m.Content, new { @class = "form-control", @rows = "7" })
                 </div>
             </div>
+            <div class="form-group">
+                @Html.EnumDropDownListFor(m => m.Category, new { @class = "control-label col-sm-4 col-sm-offset-4" })
+            </div>
 
             <div class="form-group">
                 <div class="col-sm-4 col-sm-offset-4">

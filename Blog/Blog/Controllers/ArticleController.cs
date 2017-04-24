@@ -219,8 +219,10 @@ namespace Blog.Controllers
         }
 
         //GET: Articles/MyArticles
-        public ActionResult MyArticles()
+        public ActionResult MyArticles(int page = 1)
         {
+            var pageSize = 6;
+
             var user = this.User.Identity.Name;
 
             if (user == null)
@@ -231,7 +233,32 @@ namespace Blog.Controllers
             var database = new BlogDbContext();
 
             var articles = database.Articles
+                .OrderByDescending(a => a.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .Where(a => a.Author.UserName == user)
+                .ToList();
+
+            ViewBag.CurrentPage = page;
+
+            return View(articles);
+        }
+
+        //GET: Articles/Categories
+        public ActionResult Categories()
+        {
+            return View();
+        }
+
+        //GET: Article/Categories/Club
+        [ActionName("Club")]
+        public ActionResult CategoryClub()
+        {
+            var database = new BlogDbContext();
+
+            var articles = database.Articles
+                .Where(a => a.Category
+                .Equals("Club"))
                 .ToList();
 
             return View(articles);

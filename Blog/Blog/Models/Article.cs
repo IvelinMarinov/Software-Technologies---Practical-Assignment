@@ -28,5 +28,8 @@ namespace Blog.Models
         {
             return this.Author.UserName.Equals(name);
         }
+
+        [Required]
+        public CategoryType Category { get; set; }
     }
 }

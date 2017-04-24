@@ -208,6 +208,7 @@
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\ArticleViewModel.cs" />
     <Compile Include="Models\BlogDbContext.cs" />
+    <Compile Include="Models\CategoryType.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -272,6 +273,8 @@
     <Content Include="Views\Article\Delete.cshtml" />
     <Content Include="Views\Article\Edit.cshtml" />
     <Content Include="Views\Article\MyArticles.cshtml" />
+    <Content Include="Views\Article\Categories.cshtml" />
+    <Content Include="Views\Article\Club.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
