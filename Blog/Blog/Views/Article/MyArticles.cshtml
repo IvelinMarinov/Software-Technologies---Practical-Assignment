@@ -1,7 +1,7 @@
 ﻿@model List<Blog.Models.Article>
 
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "My Articles";
 }
 
 <div class="container">
@@ -27,8 +27,5 @@
             </div>
         }
     </div>
-    <a href="/Article/List?page=@(ViewBag.CurrentPage + 1)" class="btn btn-default @(!Model.Any() || Model.Count < 6 ? "disabled" : string.Empty)">Next >></a>
-    <a href="/Article/List?page=@(ViewBag.CurrentPage - 1)" class="btn btn-default @(ViewBag.CurrentPage == 1 ? "disabled" : string.Empty)">Previous <<</a>
-
 </div>
 <hr />

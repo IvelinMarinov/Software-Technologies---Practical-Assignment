@@ -18,16 +18,23 @@ namespace Blog.Controllers
         }
 
         //GET: Article/List
-        public ActionResult List()
+        public ActionResult List(int page = 1)
         {
             using (var database = new BlogDbContext())
             {
+                var pageSize = 6;
+
                 var articles = database.Articles
+                    .OrderByDescending(a => a.Id)
+                    .Skip((page - 1) * pageSize)
+                    .Take(pageSize)
                     .Include(a => a.Author)
                     .ToList();
 
+                ViewBag.CurrentPage = page;
+
                 return View(articles);
-            }                
+            }
         }
 
         //GET: Article/Details
@@ -175,7 +182,7 @@ namespace Blog.Controllers
                 model.Title = article.Title;
                 model.Content = article.Content;
 
-                return View(model); 
+                return View(model);
             }
         }
 
@@ -209,6 +216,25 @@ namespace Blog.Controllers
             bool isAuthor = article.IsAuthor(this.User.Identity.Name);
 
             return isAdmin || isAuthor;
+        }
+
+        //GET: Articles/MyArticles
+        public ActionResult MyArticles()
+        {
+            var user = this.User.Identity.Name;
+
+            if (user == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var database = new BlogDbContext();
+
+            var articles = database.Articles
+                .Where(a => a.Author.UserName == user)
+                .ToList();
+
+            return View(articles);
         }
     }
 }
