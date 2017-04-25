@@ -218,6 +218,12 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\Game.jpg" />
+    <Content Include="images\Club.jpg" />
+    <Content Include="images\League.png" />
+    <Content Include="images\Players.jpg" />
+    <Content Include="images\Stats.jpg" />
+    <Content Include="images\Transfers.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -275,6 +281,11 @@
     <Content Include="Views\Article\MyArticles.cshtml" />
     <Content Include="Views\Article\Categories.cshtml" />
     <Content Include="Views\Article\Club.cshtml" />
+    <Content Include="Views\Article\League.cshtml" />
+    <Content Include="Views\Article\Players.cshtml" />
+    <Content Include="Views\Article\Transfers.cshtml" />
+    <Content Include="Views\Article\Stats.cshtml" />
+    <Content Include="Views\Article\Game.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

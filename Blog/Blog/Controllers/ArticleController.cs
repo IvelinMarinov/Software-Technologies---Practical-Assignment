@@ -250,15 +250,79 @@ namespace Blog.Controllers
             return View();
         }
 
-        //GET: Article/Categories/Club
+        //GET: Article/Club
         [ActionName("Club")]
         public ActionResult CategoryClub()
         {
             var database = new BlogDbContext();
 
             var articles = database.Articles
-                .Where(a => a.Category
-                .Equals("Club"))
+                .Where(a => a.Category == CategoryType.Club)
+                .ToList();                
+
+            return View(articles);
+        }
+
+        //GET: Article/Club
+        [ActionName("League")]
+        public ActionResult CategoryLeague()
+        {
+            var database = new BlogDbContext();
+
+            var articles = database.Articles
+                .Where(a => a.Category == CategoryType.League)
+                .ToList();
+
+            return View(articles);
+        }
+
+        //GET: Article/Players
+        [ActionName("Players")]
+        public ActionResult CategoryPlayers()
+        {
+            var database = new BlogDbContext();
+
+            var articles = database.Articles
+                .Where(a => a.Category == CategoryType.Players)
+                .ToList();
+
+            return View(articles);
+        }
+
+        //GET: Article/Game
+        [ActionName("Game")]
+        public ActionResult CategoryGame()
+        {
+            var database = new BlogDbContext();
+
+            var articles = database.Articles
+                .Where(a => a.Category == CategoryType.Game)
+                .ToList();
+
+            return View(articles);
+        }
+
+        //GET: Article/Transfers
+        [ActionName("Transfers")]
+        public ActionResult CategoryTransfers()
+        {
+            var database = new BlogDbContext();
+
+            var articles = database.Articles
+                .Where(a => a.Category == CategoryType.Transfers)
+                .ToList();
+
+            return View(articles);
+        }
+
+        //GET: Article/Stats
+        [ActionName("Stats")]
+        public ActionResult CategoryStats()
+        {
+            var database = new BlogDbContext();
+
+            var articles = database.Articles
+                .Where(a => a.Category == CategoryType.Stats)
                 .ToList();
 
             return View(articles);
