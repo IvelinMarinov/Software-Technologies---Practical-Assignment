@@ -258,7 +258,7 @@ namespace Blog.Controllers
 
             var articles = database.Articles
                 .Where(a => a.Category == CategoryType.Club)
-                .ToList();                
+                .ToList();
 
             return View(articles);
         }
@@ -326,6 +326,64 @@ namespace Blog.Controllers
                 .ToList();
 
             return View(articles);
+        }
+
+        //GET: Article/Rate        
+        public ActionResult Rate(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            using (var datase = new BlogDbContext())
+            {
+                var article = datase.Articles
+                    .Where(a => a.Id == id)
+                    .First();
+
+                if (article == null)
+                {
+                    return new HttpNotFoundResult();
+                }
+
+                var articleRate = new ArticleRatingViewModel()
+                {
+                    ArticleId = article.Id,
+                    User = User.Identity.Name,
+                };
+
+                return View(articleRate);
+            }
+        }
+
+        //POST: Article/Rate
+        [HttpPost]
+        public ActionResult Rate(ArticleRatingViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (var database = new BlogDbContext())
+                {
+                    var article = database.Articles
+                        .Where(a => a.Id == model.ArticleId)
+                        .First();
+
+                    if (article == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    article.RatesNum++;
+                    article.RatesSum += model.Rating;
+                    article.AverageRating = (decimal)article.RatesSum / article.RatesNum;
+
+                    database.Entry(article).State = EntityState.Modified;
+                    database.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

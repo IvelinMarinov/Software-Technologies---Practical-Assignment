@@ -30,6 +30,12 @@ namespace Blog.Models
         }
 
         [Required]
-        public CategoryType Category { get; set; }
+        public CategoryType Category { get; set; }      
+        
+        public int RatesSum { get; set; }
+        
+        public int RatesNum { get; set; }
+
+        public decimal AverageRating { get; set; }
     }
 }

@@ -14,15 +14,28 @@
         <p>
             @Model.Content
         </p>
+
         <small class="author">
-            --author @Model.Author.FullName
+            category: @Model.Category
+        </small>  
+        <small class="author">
+            author: @Model.Author.FullName
         </small>
+        <small class="author">
+            this article has been rated @Model.RatesNum times 
+        </small>
+        <small class="author">
+            average rating: @Model.AverageRating
+        </small>
+             
+
         <footer class="pull-right">
             @if (User.IsInRole("Admin") || Model.IsAuthor(User.Identity.Name))
             {
                 @Html.ActionLink("Edit", "Edit", "Article", new { @id = Model.Id }, new { @class = "btn btn-success btn-xs" })
                 @Html.ActionLink("Delete", "Delete", "Article", new { @id = Model.Id }, new { @class = "btn btn-danger btn-xs" })
             }
+            @Html.ActionLink("Rate", "Rate", "Article", new { @id = Model.Id }, new { @class = "btn btn-default btn-xs" })
             @Html.ActionLink("Back", "Index", "Article", null, new { @class = "btn btn-default btn-xs" })
         </footer>
     </article>
