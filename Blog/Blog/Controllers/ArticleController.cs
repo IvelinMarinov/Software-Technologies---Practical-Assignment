@@ -34,7 +34,7 @@ namespace Blog.Controllers
                 ViewBag.CurrentPage = page;
 
                 var article = articles.FirstOrDefault();
-                
+
                 return View(articles);
             }
         }
@@ -434,6 +434,21 @@ namespace Blog.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        //GET: Article/TopRated
+        public ActionResult TopRated()
+        {
+            using (var database = new BlogDbContext())
+            {
+                var articles = database.Articles
+                    .OrderByDescending(x => x.AverageRating)
+                    .Include(a => a.Author)
+                    .Take(10)
+                    .ToList();
+
+                return View(articles);
+            }            
         }
     }
 }

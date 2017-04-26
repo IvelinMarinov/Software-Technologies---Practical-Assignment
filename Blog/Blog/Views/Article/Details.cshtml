@@ -11,13 +11,16 @@
                 @Model.Title
             </h2>
             <small class="author">
-                by @Model.Author.FullName, posted on @Model.DateAdded
+                by @Model.Author.FullName
+            </small>
+            <small class="author">
+                posted on @Model.DateAdded
             </small>
         </header>
+        <br/>
         <img src="@Model.ImageURL" class="img-responsive img-rounded"/>
-        <p>
-            @Model.Content
-        </p>
+        <br/>
+        <p class="text-justify">@Model.Content</p>
 
         <small class="author">
             category: @Model.Category

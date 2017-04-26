@@ -219,6 +219,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\afc_logo.png" />
     <Content Include="images\Game.jpg" />
     <Content Include="images\Club.jpg" />
     <Content Include="images\League.png" />
@@ -289,6 +290,7 @@
     <Content Include="Views\Article\Stats.cshtml" />
     <Content Include="Views\Article\Game.cshtml" />
     <Content Include="Views\Article\Rate.cshtml" />
+    <Content Include="Views\Article\TopRated.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

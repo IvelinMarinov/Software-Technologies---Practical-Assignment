@@ -4,7 +4,8 @@
     ViewBag.Title = "League";
 }
 
-
+<h2 class="text-center">League News</h2>
+<hr />
 
 <div class="container">
     @foreach (var article in Model)
@@ -20,7 +21,7 @@
                             @Html.ActionLink(@article.Title, "Details", "Article", new { @id = article.Id }, null)
                         </p>
                     </header>
-                    <p>
+                    <p class="text-justify">
                         @{ var ContentSubStr = string.Empty; }
                         @if (article.Content.Length <= 400)
                         {

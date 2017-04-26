@@ -4,16 +4,16 @@
     ViewBag.Title = "Rate";
 }
 
-<h2>Rate article</h2>
+<h2 class="text-center">Thanks for reading this article!</h2>
+<h2 class="text-center">Your feedback is extremely important for the author.</h2>
+<br/>
 
-<p>Some text I'm gonna write tomorrow</p>
-
-@using (Html.BeginForm("Rate", "Article", FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("Rate", "Article", FormMethod.Post, new { @class = "form-horizontal text-center" }))
 {
     @Html.HiddenFor(m => m.ArticleId)
     @Html.HiddenFor(m => m.User)
 
-    <p>Rate this article: </p>
+    <p class="lead text-center">Rate this article: </p>
 
     @Html.DropDownListFor(m => m.Rating, new List<SelectListItem>
         {
