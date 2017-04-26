@@ -4,31 +4,53 @@
     ViewBag.Title = "My Articles";
 }
 
+
+
 <div class="container">
-    <div class="row">
-        @foreach (var article in Model)
-        {
-            <div class="col-sm-6">
+    @foreach (var article in Model)
+    {
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="@article.ImageURL" class="img-responsive img-rounded" />
+            </div>
+            <div class="col-sm-8">
                 <article>
                     <header>
-                        <h2>
+                        <p class="lead">
                             @Html.ActionLink(@article.Title, "Details", "Article", new { @id = article.Id }, null)
-                        </h2>
+                        </p>
                     </header>
                     <p>
-                        @article.Content
+                        @{ var ContentSubStr = string.Empty; }
+                        @if (article.Content.Length <= 400)
+                        {
+                            ContentSubStr = article.Content;
+                        }
+                        else
+                        {
+                            ContentSubStr = article.Content.Substring(0, 400) + "...";
+                        }
+
+                        @ContentSubStr
                     </p>
-                    <footer class="pull-right">
-                        <small class="author">
-                            --author @article.Author.FullName
+                    <footer>
+                        <small class="author pull-right">
+                            by @article.Author.FullName
+                        </small>
+                        <small class="author pull-left">
+                            added on @article.DateAdded
                         </small>
                     </footer>
                 </article>
             </div>
-        }
-    </div>
+        </div>
+
+        <hr />
+                            }
 </div>
+
 <hr />
 
-<a href="/Article/MyArticles?page=@(ViewBag.CurrentPage - 1)" class="btn btn-default text-center @(ViewBag.CurrentPage == 1 ? "disabled" : string.Empty)">Previous <<</a>
-<a href="/Article/MyArticles?page=@(ViewBag.CurrentPage + 1)" class="btn btn-default text-center @(!Model.Any() || Model.Count < 6 ? "disabled" : string.Empty)">Next >></a>
+<a href="/Article/List?page=@(ViewBag.CurrentPage - 1)" class="btn btn-default text-center @(ViewBag.CurrentPage == 1 ? "disabled" : string.Empty)">Previous <<</a>
+<a href="/Article/List?page=@(ViewBag.CurrentPage + 1)" class="btn btn-default text-center @(!Model.Any() || Model.Count < 6 ? "disabled" : string.Empty)">Next >></a>
+

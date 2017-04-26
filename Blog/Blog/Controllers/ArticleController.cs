@@ -33,6 +33,8 @@ namespace Blog.Controllers
 
                 ViewBag.CurrentPage = page;
 
+                var article = articles.FirstOrDefault();
+                
                 return View(articles);
             }
         }
@@ -84,6 +86,12 @@ namespace Blog.Controllers
                         .Id;
 
                     article.AuthorId = authorId;
+                    article.DateAdded = DateTime.UtcNow;
+
+                    if (article.ImageURL == null)
+                    {
+                        article.ImageURL = "/images/NoPreviewAvailable.jpg";
+                    }
 
                     database.Articles.Add(article);
                     database.SaveChanges();
@@ -252,78 +260,120 @@ namespace Blog.Controllers
 
         //GET: Article/Club
         [ActionName("Club")]
-        public ActionResult CategoryClub()
+        public ActionResult CategoryClub(int page = 1)
         {
+            var pageSize = 6;
+
             var database = new BlogDbContext();
 
             var articles = database.Articles
                 .Where(a => a.Category == CategoryType.Club)
+                .OrderByDescending(a => a.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToList();
+
+            ViewBag.CurrentPage = page;
 
             return View(articles);
         }
 
         //GET: Article/Club
         [ActionName("League")]
-        public ActionResult CategoryLeague()
+        public ActionResult CategoryLeague(int page = 1)
         {
+            var pageSize = 6;
+
             var database = new BlogDbContext();
 
             var articles = database.Articles
                 .Where(a => a.Category == CategoryType.League)
+                .OrderByDescending(a => a.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToList();
+
+            ViewBag.CurrentPage = page;
 
             return View(articles);
         }
 
         //GET: Article/Players
         [ActionName("Players")]
-        public ActionResult CategoryPlayers()
+        public ActionResult CategoryPlayers(int page = 1)
         {
+            var pageSize = 6;
+
             var database = new BlogDbContext();
 
             var articles = database.Articles
                 .Where(a => a.Category == CategoryType.Players)
+                .OrderByDescending(a => a.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToList();
+
+            ViewBag.CurrentPage = page;
 
             return View(articles);
         }
 
         //GET: Article/Game
         [ActionName("Game")]
-        public ActionResult CategoryGame()
+        public ActionResult CategoryGame(int page = 1)
         {
+            var pageSize = 6;
+
             var database = new BlogDbContext();
 
             var articles = database.Articles
                 .Where(a => a.Category == CategoryType.Game)
+                .OrderByDescending(a => a.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToList();
+
+            ViewBag.CurrentPage = page;
 
             return View(articles);
         }
 
         //GET: Article/Transfers
         [ActionName("Transfers")]
-        public ActionResult CategoryTransfers()
+        public ActionResult CategoryTransfers(int page = 1)
         {
+            var pageSize = 6;
+
             var database = new BlogDbContext();
 
             var articles = database.Articles
                 .Where(a => a.Category == CategoryType.Transfers)
+                .OrderByDescending(a => a.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToList();
+
+            ViewBag.CurrentPage = page;
 
             return View(articles);
         }
 
         //GET: Article/Stats
         [ActionName("Stats")]
-        public ActionResult CategoryStats()
+        public ActionResult CategoryStats(int page = 1)
         {
+            var pageSize = 6;
+
             var database = new BlogDbContext();
 
             var articles = database.Articles
                 .Where(a => a.Category == CategoryType.Stats)
+                .OrderByDescending(a => a.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToList();
+
+            ViewBag.CurrentPage = page;
 
             return View(articles);
         }

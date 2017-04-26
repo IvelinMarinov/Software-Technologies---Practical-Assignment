@@ -24,8 +24,19 @@
                 </div>
             </div>
             <div class="form-group">
-                @Html.EnumDropDownListFor(m => m.Category, new { @class = "control-label col-sm-4 col-sm-offset-4" })
+                @Html.LabelFor(m => m.ImageURL, new { @class = "control-label col-sm-4" })
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(m => m.ImageURL, new { @class = "form-control"})
+                </div>
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Category, new { @class = "control-label col-sm-4" })
+                <div class="col-sm-4">
+                    @Html.EnumDropDownListFor(m => m.Category, new { @class = "form-control" })
+                </div>
+            </div>
+            
 
             <div class="form-group">
                 <div class="col-sm-4 col-sm-offset-4">

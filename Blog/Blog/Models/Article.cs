@@ -37,5 +37,9 @@ namespace Blog.Models
         public int RatesNum { get; set; }
 
         public decimal AverageRating { get; set; }
+
+        public string ImageURL { get; set; }
+
+        public DateTime DateAdded { get; set; }
     }
 }

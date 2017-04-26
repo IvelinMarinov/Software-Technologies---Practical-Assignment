@@ -10,7 +10,11 @@
             <h2>
                 @Model.Title
             </h2>
+            <small class="author">
+                by @Model.Author.FullName, posted on @Model.DateAdded
+            </small>
         </header>
+        <img src="@Model.ImageURL" class="img-responsive img-rounded"/>
         <p>
             @Model.Content
         </p>
@@ -18,9 +22,7 @@
         <small class="author">
             category: @Model.Category
         </small>  
-        <small class="author">
-            author: @Model.Author.FullName
-        </small>
+        
         <small class="author">
             this article has been rated @Model.RatesNum times 
         </small>

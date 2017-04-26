@@ -222,6 +222,7 @@
     <Content Include="images\Game.jpg" />
     <Content Include="images\Club.jpg" />
     <Content Include="images\League.png" />
+    <Content Include="images\NoPreviewAvailable.jpg" />
     <Content Include="images\Players.jpg" />
     <Content Include="images\Stats.jpg" />
     <Content Include="images\Transfers.jpg" />
