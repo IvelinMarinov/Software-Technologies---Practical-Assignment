@@ -147,11 +147,28 @@ namespace Blog.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase image)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, FullName = model.FullName, Email = model.Email };
+                var allowedContentTypes = new[] {
+                    "image/jpeg",
+                    "image/jpg",
+                    "image/png"
+                };
+
+                var uploadPath = string.Empty;
+
+                if (allowedContentTypes.Contains(image.ContentType))
+                {
+                    var imagesPath = "/Content/Images/Users/";
+                    var fileName = image.FileName;
+                    uploadPath = imagesPath + fileName;
+                    var physicalPath = Server.MapPath(uploadPath);
+                    image.SaveAs(physicalPath);
+                }
+
+                var user = new ApplicationUser { UserName = model.Email, FullName = model.FullName, Email = model.Email, ImagePath = uploadPath };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

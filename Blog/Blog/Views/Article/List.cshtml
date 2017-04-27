@@ -4,8 +4,6 @@
     ViewBag.Title = "List";
 }
 
-
-
 <div class="container">
     @foreach (var article in Model)
     {
@@ -33,9 +31,10 @@
 
                         @ContentSubStr
                     </p>
+                                        
                     <footer>
                         <small class="author pull-right">
-                            by @article.Author.FullName
+                            by @article.Author.FullName <img src="@article.Author.ImagePath" height="40" class="img-circle" />
                         </small>
                         <small class="author pull-left">
                             added on @article.DateAdded

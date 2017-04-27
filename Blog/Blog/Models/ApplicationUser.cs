@@ -16,6 +16,8 @@ namespace Blog.Models
         [Required]
         public string FullName { get; set; }
 
+        public string ImagePath { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

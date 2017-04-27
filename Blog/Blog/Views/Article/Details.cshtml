@@ -10,12 +10,9 @@
             <h2>
                 @Model.Title
             </h2>
-            <small class="author">
-                by @Model.Author.FullName
-            </small>
-            <small class="author">
-                posted on @Model.DateAdded
-            </small>
+            <p class="text-primary">
+                by @Model.Author.FullName <img src="@Model.Author.ImagePath" height="40" class="img-circle" /> posted on @Model.DateAdded
+            </p>            
         </header>
         <br/>
         <img src="@Model.ImageURL" class="img-responsive img-rounded"/>
