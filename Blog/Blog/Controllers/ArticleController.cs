@@ -91,7 +91,7 @@ namespace Blog.Controllers
 
                     if (article.ImageURL == null)
                     {
-                        article.ImageURL = "/images/NoPreviewAvailable.jpg";
+                        article.ImageURL = "/Content/Images/NoPreview.jpg";
                     }
 
                     database.Articles.Add(article);
