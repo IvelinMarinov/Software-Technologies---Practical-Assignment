@@ -1,0 +1,51 @@
+﻿@model List<Blog.Models.Article>
+
+@{
+    ViewBag.Title = "TopRated";
+}
+
+<h2 class="text-center">Below are our ten top rated articles</h2>
+<hr />
+
+
+<div class="container">
+    @foreach (var article in Model)
+    {
+        <div class="row">
+            <div class="col-sm-4">
+                <img src="@article.ImageURL" class="img-responsive img-rounded" />
+            </div>
+            <div class="col-sm-8">
+                <article>
+                    <header>
+                        <p class="lead">
+                            @Html.ActionLink(@article.Title, "Details", "Article", new { @id = article.Id }, null)
+                        </p>
+                    </header>
+                    <p class="text-justify">
+                        @{ var ContentSubStr = string.Empty; }
+                        @if (article.Content.Length <= 400)
+                        {
+                            ContentSubStr = article.Content;
+                        }
+                        else
+                        {
+                            ContentSubStr = article.Content.Substring(0, 400) + "...";
+                        }
+
+                        @ContentSubStr
+                    </p>
+                    <footer>
+                        <small class="author pull-right">
+                            by @article.Author.FullName
+                        </small>
+                        <small class="author pull-left">
+                            added on @article.DateAdded
+                        </small>
+                    </footer>
+                </article>
+            </div>
+        </div>
+        <hr />
+                            }
+</div>

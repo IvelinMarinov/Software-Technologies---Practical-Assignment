@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body style="background-image: /images/afc_logo.png">
+<body>
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -16,7 +16,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Arsenal FC Blog", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                
+
+                <a href="/Home/Index" class="navbar-brand">
+                    <img src="~/images/afc_logo.png" style="height: 60px; width:60px; margin-top: -20px; margin-right: 10px" class="pull-left" />
+                    Arsenal FC Blog
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 @Html.Partial("_LoginPartial")

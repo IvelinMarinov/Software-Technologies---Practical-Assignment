@@ -241,11 +241,13 @@ namespace Blog.Controllers
             var database = new BlogDbContext();
 
             var articles = database.Articles
+                .Where(a => a.Author.UserName == user)
                 .OrderByDescending(a => a.Id)
                 .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .Where(a => a.Author.UserName == user)
+                .Take(pageSize)                
                 .ToList();
+
+            //var articles1 = database.Articles.
 
             ViewBag.CurrentPage = page;
 
