@@ -52,6 +52,6 @@
 
 <hr />
 
-<a href="/Article/List?page=@(ViewBag.CurrentPage - 1)" class="btn btn-default text-center @(ViewBag.CurrentPage == 1 ? "disabled" : string.Empty)">Previous <<</a>
-<a href="/Article/List?page=@(ViewBag.CurrentPage + 1)" class="btn btn-default text-center @(!Model.Any() || Model.Count < 6 ? "disabled" : string.Empty)">Next >></a>
+<a href="/Article/Club?page=@(ViewBag.CurrentPage - 1)" class="btn btn-default text-center @(ViewBag.CurrentPage == 1 ? "disabled" : string.Empty)">Previous <<</a>
+<a href="/Article/Club?page=@(ViewBag.CurrentPage + 1)" class="btn btn-default text-center @(!Model.Any() || Model.Count < 6 ? "disabled" : string.Empty)">Next >></a>
 

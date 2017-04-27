@@ -249,6 +249,9 @@ namespace Blog.Controllers
                 .ToList();
 
             ViewBag.CurrentPage = page;
+            ViewBag.ArticlesNum = database.Articles
+                .Where(a => a.Author.Id == userId)
+                .Count();
 
             return View(articles);
         }
