@@ -1,4 +1,5 @@
 ﻿using Blog.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -226,14 +227,14 @@ namespace Blog.Controllers
             return isAdmin || isAuthor;
         }
 
-        //GET: Articles/MyArticles
+        //GET: Article/MyArticles
         public ActionResult MyArticles(int page = 1)
         {
             var pageSize = 6;
 
-            var user = this.User.Identity.Name;
+            var userId = this.User.Identity.GetUserId();
 
-            if (user == null)
+            if (userId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -241,20 +242,18 @@ namespace Blog.Controllers
             var database = new BlogDbContext();
 
             var articles = database.Articles
-                .Where(a => a.Author.UserName == user)
+                .Where(a => a.Author.Id == userId)
                 .OrderByDescending(a => a.Id)
                 .Skip((page - 1) * pageSize)
-                .Take(pageSize)                
+                .Take(pageSize)
                 .ToList();
-
-            //var articles1 = database.Articles.
 
             ViewBag.CurrentPage = page;
 
             return View(articles);
         }
 
-        //GET: Articles/Categories
+        //GET: Article/Categories
         public ActionResult Categories()
         {
             return View();
@@ -450,7 +449,7 @@ namespace Blog.Controllers
                     .ToList();
 
                 return View(articles);
-            }            
+            }
         }
     }
 }
