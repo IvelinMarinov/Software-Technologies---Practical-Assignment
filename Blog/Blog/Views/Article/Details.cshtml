@@ -17,7 +17,7 @@
         <br/>
         <img src="@Model.ImageURL" class="img-responsive img-rounded" alt="Blog post title image"/>
         <br/>
-        <p class="text-justify">@Model.Content</p>
+        <p class="text-justify">@Html.Raw(Model.Content.Replace(Environment.NewLine, "<br/>"))</p>
 
         <small class="author">
             category: @Model.Category
